@@ -1,0 +1,42 @@
+1. ¿Cuáles son las principales diferencias entre Haskell y RACKET?
+Aunque Haskell y RACKET son ambos lenguajes de programación funcionales, tienen ciertas caracteristicas que los hacen diferentes.
+ - Tipo de evaluación.
+ Haskell utiliza la evaluación perezosa, es decir, que no hace calculos más allá de los necesarios, mientras que RACKET es de evaluación ansiosa o estricta, es decir que verifica todos y cada uno de los datos proporcionados.
+ - ¿Estático o dinámico?
+  Haskell es fuertemente tipado esto significa que verifica los tipos en tiempo de compilción además de que determina los tipos de forma automática (inferencia de tipos).
+  Del otro lado, RACKET es dinámicamente tipado, esto quiere decir que las asignaciones pueden cambiar a lo largo del programa y no se necesita una declaración explicíta.
+  -Sintaxis.
+  Haskell tiene una sintaxis muy parecida a la matemática mientras que RACKET utiliza las expresiones con paréntesis, lo que puede resultar un poco confuso al momento de programar o leer código.
+  -Pureza.
+  Una función pura es aquella que, dada una misma entrada, siempre regresa el mismo valor de salida, sin ningún otro efecto secundario observable, en este caso, Haskell es puramente funcional mientras que RACKET es funcional pero sí permite efectos secundarios, con esto nos referimos a culaquier cambio de estado en el sistema.
+
+2. ¿Cuáles son las principales diferencias entre Haskell y Java?
+ - Tipo de evaluación.
+ Java utiliza la evaluación ansiosa, es decir, que verifica todos y cada uno de los datos proporcionados, y Haskell es de evaluación de perezosa, es decir, solo hace los cálculos necesarios.
+ - Paradigma.
+ Haskell es un lenguaje de programación declarativo mientras que Java es imperativo. Haskell responde a la pregunta ¿Qué hace? y Java responde a la pregunta de ¿Cómo lo hace?
+ -Pureza.
+ Java permite tener efectos secundarios mientras que Haskell siempre devuelve el mismo valor de salida según el valor de la entrada.
+ - Aprendizaje.
+ Haskell es ideal para comenzar a programar gracias a su fácil sintaxis mientras que Java resulta más difícil de aprender debido a que, por decirlo de alguna manera, tienes que contruir todo por cuenta propia.
+
+3. ¿Por qué Haskell no ha alcanzado una adopción significativa en la industria del software?
+ Podría ser debido          todo el transfondo que conlleva utilizar Haskell, nosotros como computológos, tenemos una curva de aprendizaje diferente en comparación a la gente que comienza a programar
+ Podría ser debido a todo el conociemto que tiene Haskell como lenguaje de programación por detrás, nosotros como computológos conocemos la semilla mientras que otras personas que intentan conocer Haskell conocen ya la planta crecida. Los conceptos matemáticos pueden llegar a ser dificiles de entender a la primera, como por ejemplo, entender la recursón. Haskell está limitado a una bliblioteca más reducida, lo que a menudo hace que se busquen otras opciones.
+
+4. Si pudieras realizar un simple analogía entre Git y GitHub ¿Cúal se te vendría a la mente?
+Git es  sembrar, regar, cuidar de una planta, llevando un registro de como va cambiando a lo largo del tiempo y GitHub es el jardín donde exhibo a esa plantita que ya creció para que otras personas puedan verla.
+
+Bibliografía
+
+Eager Evaluation. (s/f). Dremio.com. Recuperado el 18 de febrero de 2026, de https://www.dremio.com/wiki/eager-evaluation/
+
+Empirical evidence of Haskell advantages. (2023, marzo 15). Haskell Community. https://discourse.haskell.org/t/empirical-evidence-of-haskell-advantages/5987/6
+
+Obregon, A. (2025, marzo 26). What is Racket and how is it used? Medium. https://medium.com/@AlexanderObregon/what-is-racket-and-how-is-it-used-ca6bc9f6f5eb
+
+Pura Felicidad con funciones Puras. (s/f). SG Buzz. Recuperado el 18 de febrero de 2026, de https://sg.com.mx/revista/49/pura-felicidad-funciones-puras
+
+Racket. (s/f). Racket-lang.org. Recuperado el 18 de febrero de 2026, de https://racket-lang.org/
+
+Rennie, J. (2025, febrero 6). Why functional programming languages will never be mainstream. Medium. https://itnext.io/why-functional-programming-languages-will-never-be-mainstream-e1b5a8c9e4d8

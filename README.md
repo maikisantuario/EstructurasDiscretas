@@ -1,0 +1,3 @@
+-Nombre: Santuario Tellez Melanie Elizabeth.
+-Objetivo del repositorio:Prácticas y proyectos de la materia Estructuras Discretas
+-Versión de GHC: Version 9.0.2
