@@ -1,8 +1,9 @@
-Objetivo de la práctica: 
+Objetivo de la práctica: Implementar la recursión en diferentes funciones.
 
-Tiempo de realización: 
+Tiempo de realización: 1 hora y 10 minutos.
 
-Comentarios extras: 
+Comentarios extras: Investigué la función 'extranio' y encontré que también es conocida como problema 3n + 1, Conjetura de Ulam o Algoritmo de Hailstone y es famosa porque no se ha podidio demostar que siempre llegué a uno jeje.
+De nuevo me equivoqué en los commits y no sé como cambiarlos :c
 
 • ¿Qué es la Recursión de cola (tail recursion)?
 La recursión de cola es una forma diferente de la recursión donde en vez de llamar recursivamente a la cabeza de la lista manda a llamr a la cola de la lista. Es eficiente porque nos permite evitar que la pila de ejecución se llene ya que en la recursión normal cada vez que se manda a llamar a la función se crea un nuevo frame en la pila, la recursión de cola puede aprovechar estas llamdas y trabajar sobre ellas sin necesidad de crear un nuevo recurso.  
