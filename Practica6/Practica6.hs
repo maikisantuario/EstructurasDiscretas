@@ -1,65 +1,94 @@
-module Practica6 where
+module Practica6 (Arbol(..), nVacios, refleja, minimo, Orden(..), recorrido, esBalanceado, listaArbol) where
 
-import Auxiliar (Arbol(Vacío, AB), altura, maxAux, absAux, insertarBST)
+import Auxiliar (Arbol(Vacio, AB), altura, maxAux, absAux)
 
-{- 1. Función: nVacíos
+{- Tipo Orden para los recorridos -}
+
+data Orden = InOrden | PreOrden | PosOrden deriving (Eq, Show)
+
+{- 1. Función: nVacios
 Descripción: Devuelve el total de nodos vacíos en un árbol.
-Uso: nVacíos (AB 4 Vacío (AB 3 Vacío Vacío)) -> 3
+Uso: nVacios (AB 4 Vacio (AB 3 Vacio Vacio)) -> 3
 -}
 
-nVacíos :: Arbol a -> Int
-nVacíos Vacío = 1
-nVacíos (AB _ izquierdo derecho) = nVacíos izquierdo + nVacíos derecho
+nVacios :: Arbol a -> Int
+nVacios Vacio = 1
+nVacios (AB _ izquierdo derecho) = nVacios izquierdo + nVacios derecho
 
-{- 2. Función: refleja
+{- 2 Función: refleja
 Descripción: Hace que todos los subárboles izquierdos se vuelvan subárboles derechos y viceversa.
-Uso: refleja (AB 4 Vacío (AB 3 Vacío (AB 5 Vacío Vacío))) -> AB 4 (AB 3 (AB 5 Vacío Vacío) Vacío) Vacío
+Uso: refleja (AB 4 Vacio (AB 3 Vacio (AB 5 Vacio Vacio))) -> AB 4 (AB 3 (AB 5 Vacio Vacio) Vacio) Vacio
 -}
 
 refleja :: Arbol a -> Arbol a
-refleja Vacío = Vacío
+refleja Vacio = Vacio
 refleja (AB raiz izquierdo derecho) = AB raiz (refleja derecho) (refleja izquierdo)
 
-{- 3. Función: minimo
+{- Función auxiliar: minimoAux
+Descripción: Devuelve el valor mínimo entre dos elementos.
+Uso: minimoAux 5 3 -> 3
+Nota: La coloqué aquí porque al llamarla desde el archivo Auxiliar me marcaba un error.
+-}
+
+minimoAux :: Ord a => a -> a -> a
+minimoAux x y
+    | x <= y = x
+    | otherwise = y
+
+{- 3 Función: minimo
 Descripción: Devuelve el elemento mínimo de un árbol.
-Uso: minimo (AB 9.0 (AB 4.0 Vacío (AB 5.0 Vacío (AB 6.1 Vacío Vacío)))) -> 4.0
+Uso: minimo (AB 9.0 (AB 4.0 Vacio (AB 5.0 Vacio (AB 6.1 Vacio Vacio)))) -> 4.0
 -}
 
 minimo :: Ord a => Arbol a -> a
-minimo (AB raiz Vacío _) = raiz
-minimo (AB _ izquierdo _) = minimo izquierdo
-minimo Vacío = error "El árbol está vacío"
+minimo (AB raiz Vacio Vacio) = raiz
+minimo (AB raiz izquierdo Vacio) = minimoAux raiz (minimo izquierdo)
+minimo (AB raiz Vacio derecho) = minimoAux raiz (minimo derecho)
+minimo (AB raiz izquierdo derecho) = minimoAux (minimo izquierdo) (minimo derecho)
+minimo Vacio = error "El árbol está vacío"
 
 {- 4. Función: recorrido
-Descripción: Devuelve una lista con los elementos de un árbol de acuerdo al recorrido
-Uso: recorrido (AB 4 Vacío (AB 3 Vacío (AB 5 Vacío Vacío))) InOrden -> [4,3,5]
+Descripción: Devuelve una lista con los elementos de un árbol de acuerdo al recorrido.
+Uso: recorrido (AB 4 Vacio (AB 3 Vacio (AB 5 Vacio Vacio))) InOrden -> [4,3,5]
 -}
 
-data Orden = InOrden | PreOrden | PostOrden deriving (Eq, Show)
-
 recorrido :: Arbol a -> Orden -> [a]
-recorrido Vacío _ = []
+recorrido Vacio _ = []
 recorrido (AB raiz izquierdo derecho) InOrden = recorrido izquierdo InOrden ++ [raiz] ++ recorrido derecho InOrden
 recorrido (AB raiz izquierdo derecho) PreOrden = [raiz] ++ recorrido izquierdo PreOrden ++ recorrido derecho PreOrden
-recorrido (AB raiz izquierdo derecho) PostOrden = recorrido izquierdo PostOrden ++ recorrido derecho PostOrden ++ [raiz]
+recorrido (AB raiz izquierdo derecho) PosOrden = recorrido izquierdo PosOrden ++ recorrido derecho PosOrden ++ [raiz]
 
-{- 5. Función: esBalanceado
-Descripción: Verifica si un árbol está balanceado, si lo esta regresa  Trueu de lo contrario regresa False.
-Uso: esBalanceado (AB 1 (AB 2 Vacío Vacío) (AB 3 Vacío Vacío)) -> True
+{- 5 Función: esBalanceado
+Descripción: Verifica si un árbol está balanceado, si lo esta regresa True de lo contrario False
+Uso: esBalanceado (AB 1 (AB 2 Vacio Vacio) (AB 3 Vacio Vacio)) -> True
 -}
 
 esBalanceado :: Arbol a -> Bool
-esBalanceado Vacío = True
+esBalanceado Vacio = True
 esBalanceado (AB _ izquierdo derecho) = 
     let resta = altura izquierdo - altura derecho
         diferencia = absAux resta
     in diferencia <= 1 && esBalanceado izquierdo && esBalanceado derecho
 
+{- Función auxiliar: insertarEnBST
+Descripción: Inserta un elemento en un árbol binario
+Uso: insertarEnBST 5 (AB 3 Vacio Vacio) -> AB 3 Vacio (AB 5 Vacio Vacio)
+Nota: De igual forma la coloqué aqui porque de lo contrario al ejecutar las pruebas unitarias me marcaba error-}
+
+insertarEnBST :: Ord a => a -> Arbol a -> Arbol a
+insertarEnBST x Vacio = AB x Vacio Vacio
+insertarEnBST x (AB raiz izquierdo derecho)
+    | x == raiz = AB raiz izquierdo derecho
+    | x < raiz = AB raiz (insertarEnBST x izquierdo) derecho
+    | x > raiz = AB raiz izquierdo (insertarEnBST x derecho)
+
 {- 6. Función: listaArbol
 Descripción: Recibe una lista de elementos y regresa un árbol binario de búsqueda, no necesariamente balanceado.
-Uso: listaArbol [5,3,7,1,9] -> AB 5 (AB 3 (AB 1 Vacío Vacío) Vacío) (AB 7 Vacío (AB 9 Vacío Vacío))
+Uso: listaArbol [5,3,7,1,9] -> AB 5 (AB 3 (AB 1 Vacio Vacio) Vacio) (AB 7 Vacio (AB 9 Vacio Vacio))
 -}
 
 listaArbol :: Ord a => [a] -> Arbol a
-listaArbol [] = Vacío
-listaArbol (x:xs) = insertarBST x (listaArbol xs)
+listaArbol xs = aux xs Vacio
+  where
+    aux [] arbol = arbol
+    aux (y:ys) arbol = aux ys (insertarEnBST y arbol)
