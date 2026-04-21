@@ -1,15 +1,13 @@
-Objetivo: Implementar la recursión sobre árboles.
++ Objetivo: Implementar la recursión sobre árboles. 
++ Tiempo requerido: 7 horas.
++ Comentarios extra: Estuvo divertido hacer las gráficas de los arboles.
 
-    Tiempo requerido: 7 horas.
-
-    Comentarios extra: Estuvo divertido hacer las gráficas de los arboles.
-
-    Consulta arbolesHaskell_6 nota.hs de nuestro repositorio oficial y responde a las siguientes preguntas:
-    • De acuerdo al ejemplo de la función foldl o foldr el árbol resultante es un BST balanceado?
-    No, si usas cualquiera de las dos funciones el arbol que sale depende de el orden que tenga la lista, Si la lista ya está ordenada, el arbol quedará de esa forma.
++ Consulta arbolesHaskell_6 nota.hs de nuestro repositorio oficial y responde a las siguientes preguntas:
+• De acuerdo al ejemplo de la función foldl o foldr el árbol resultante es un BST balanceado?
+No, si usas cualquiera de las dos funciones el arbol que sale depende de el orden que tenga la lista, Si la lista ya está ordenada, el arbol quedará de esa forma. 
 
 • De manera conceptual. ¿Cuál seria la idea para que foldr o foldl nos ayude a insertar BST balanceados?
-Podría ser primero ordenar la lista y comenzar a insertar desde el elemento que esté a la mitad (como raíz) para después agregar uno a la izquierda y luego uno a la derecha de manera recursiva pero ya no es directo jeje. Otra opción es que la función ya tenga balanceo automatico y ahí si foldr los va metiendo uno por uno y el arbol se va balaceando solo.
+Podría ser primero ordenar la lista y comenzar a insertar desde el elemento que esté a la mitad (como raíz) para después agregar uno a la izquierda y luego uno a la derecha de manera recursiva pero ya no es directo jeje. Otra opción es que la función ya tenga balanceo automatico y ahí si foldr los va metiendo uno por uno y el arbol se va balaceando solo. 
 
 • ¿Cúales son las ventajas que tienen las funciones foldl sobre foldr?
 Foldl ocupa la recursión de cola, es decir, que no llena la pila de ejecución y por lo tanto es más eficiente ya que no guarda 'llamadas pendientes'.
@@ -17,10 +15,9 @@ Foldl ocupa la recursión de cola, es decir, que no llena la pila de ejecución 
 • ¿Cúales son las ventajas que tienen las funciones foldr sobre foldl?
 Foldr puede trabajar con listas infinitas sin necesidad de recorrer toda la lista si la operación es de evaluación perezosa (no traba de más) además de que es más natural pra hacer o construir listas o estructuras sin cambiar el orden.
 
-Arbol de 3 niveles.
++ Arbol de 3 niveles.
 
-
-
+```mermaid
 graph TB
     7 --> 14
     7 --> 21
@@ -29,11 +26,9 @@ graph TB
     21 --> 42
     21 --> 49
 
- Arbol de 4 niveles.
+  +Arbol de 4 niveles
 
-
-
-graph TB
+    graph TB
     7 --> 14
     7 --> 21
     14 --> 28
@@ -49,10 +44,7 @@ graph TB
     49 --> 98
     49 --> 105
 
-Crear la representación visual de los siguientes árboles:
-    (a) AB 4 Vacio (AB 3 Vacio (AB 5 Vacio Vacio))
-
-
+a) AB 4 Vacío (AB 3 Vacío (AB 5 Vacío Vacío))
 
 graph TB
     4 --> V1[Vacío]
@@ -62,8 +54,7 @@ graph TB
     5 --> V3[Vacío]
     5 --> V4[Vacío]
 
-(b) AB 3 (AB 7 (AB 12 Vacio Vacio) Vacio) (AB 6 (AB 11 Vacio Vacio) (AB 10 Vacio Vacio))
-
+b) AB 3 (AB 7 (AB 12 Vacío Vacío) Vacío) (AB 6 (AB 11 Vacío Vacío) (AB 10 Vacío Vacío))
 
 graph TB
     3 --> 7
@@ -79,8 +70,7 @@ graph TB
     10 --> V6[Vacío]
     10 --> V7[Vacío]
 
-(c) AB 8 (AB 6 (AB 1 Vacio (AB 4 (AB 2 Vacio Vacio) Vacio)) (AB 7 Vacio Vacio)) (AB 15 Vacio Vacio)
-
+(c) AB 8 (AB 6 (AB 1 Vacío (AB 4 (AB 2 Vacío Vacío) Vacío)) (AB 7 Vacío Vacío)) (AB 15 Vacío Vacío)
 
 graph TB
     8 --> 6
@@ -97,3 +87,4 @@ graph TB
     7 --> V6[Vacío]
     15 --> V7[Vacío]
     15 --> V8[Vacío]
+    
