@@ -38,3 +38,30 @@ eliminaDuplicados (x:xs) = x : eliminaDuplicados (filtrar x xs)
     filtrar y (z:zs)
         | y == z = filtrar y zs
         | otherwise = z : filtrar y zs
+
+{-Función: cuentaVeces
+Descripción: Cuenta cuántas veces aparece un elemento en una lista.
+Uso: cuentaVeces 'A' "AVRAHKADABRA" -> 5
+-}
+
+cuentaVeces :: Eq a => a -> [a] -> Int
+cuentaVeces _ [] = 0
+cuentaVeces c (x:xs)
+    | c == x = 1 + cuentaVeces c xs
+    | otherwise = cuentaVeces c xs
+
+{-Función: ordenarFrec
+Descripción: Ordena una lista de pares ordenados de mayor a menor frecuencia.
+Uso: ordenarFrec [('V',1), ('A',5), ('R',2), ('B',1)] 
+     -> [('A',5), ('R',2), ('V',1), ('B',1)]
+-}
+
+ordenarFrec:: [(Char, Int)] -> [(Char, Int)]
+ordenarFrec [] = []
+ordenarFrec (x:xs) = insertarDesc x (ordenarFrec xs)
+where
+    insertarDesc (c,f) [] = [(c,f)]
+    insertarDesc (c,f) ((c',f'):ys)
+        | f >= f' = (c,f) : (c',f') : ys
+        | otherwise = (c',f') : insertarDesc (c,f) ys
+        
