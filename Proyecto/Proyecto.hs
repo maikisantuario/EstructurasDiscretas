@@ -1,0 +1,22 @@
+module Proyecto where
+import Aux
+
+{-Función: frecuencias
+Descripción:Dada una cadena de texto, regresa las frecuencias de cada carácter de mayor a menor frecuencia.
+Uso: frecuencias "AVRAHKADABRA" -> [('A',5), ('R',2), ('V',1), ('H',1), ('K',1), ('D',1), ('B',1)]
+-}
+
+frecuencias :: String -> [(Char, Int)]
+frecuencias str = ordenarFrec (generaFrec (eliminaDuplicados str) str)
+  where
+    generaFrec [] _ = []
+    generaFrec (c:cs) s = (c, cuentaVeces c s) : generaFrec cs s
+
+{-Función: creaListaHojas
+Descripción:Convierte una lista(carácter, frecuencia) en una lista de árbol ordenada de menor a mayor.
+Uso: crearListaHojas [('A',5), ('R',2), ('V',1)] -> [Leaf 'V' 1, Leaf 'R' 2, Leaf 'A' 5]
+-}
+
+creaListaHoja :: [(Char, Int)] -> [HuffmanTree]
+creaListaHoja [] = []
+creaListaHoja ((c,f):resto) = insertarArbolOrd (Leaf c f) (creaListaHoja resto)
