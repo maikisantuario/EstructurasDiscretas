@@ -20,3 +20,15 @@ Uso: crearListaHojas [('A',5), ('R',2), ('V',1)] -> [Leaf 'V' 1, Leaf 'R' 2, Lea
 creaListaHoja :: [(Char, Int)] -> [HuffmanTree]
 creaListaHoja [] = []
 creaListaHoja ((c,f):resto) = insertarArbolOrd (Leaf c f) (creaListaHoja resto)
+
+{-Función: construyeArbol
+Descripción: Construye un árbol a partir de una lista ordenada de árboles, combina los dos menoress hasta quedé solamente uno. 
+Uso: construyeArbol [Leaf 'V' 1, Leaf 'R' 2, Leaf 'A' 5] -> Node 8 ...
+-}
+construyeArbol :: [HuffmanTree] -> HuffmanTree
+construyeArbol [t] = t
+construyeArbol (t1:t2:resto) = 
+    let suma = getFreq t1 + getFreq t2
+        nuevo = Node suma t1 t2
+    in construyeArbol (insertarArbolOrd nuevo resto)
+construyeArbol _ = error "No se puede construir el árbol"
