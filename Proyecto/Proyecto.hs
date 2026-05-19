@@ -25,10 +25,19 @@ creaListaHoja ((c,f):resto) = insertarArbolOrd (Leaf c f) (creaListaHoja resto)
 Descripción: Construye un árbol a partir de una lista ordenada de árboles, combina los dos menoress hasta quedé solamente uno. 
 Uso: construyeArbol [Leaf 'V' 1, Leaf 'R' 2, Leaf 'A' 5] -> Node 8 ...
 -}
+
 construyeArbol :: [HuffmanTree] -> HuffmanTree
 construyeArbol [t] = t
 construyeArbol (t1:t2:resto) = 
     let suma = getFreq t1 + getFreq t2
         nuevo = Node suma t1 t2
     in construyeArbol (insertarArbolOrd nuevo resto)
-construyeArbol _ = error "No se puede construir el árbol"
+construyeArbol _ = error "No se pudo construir el árbol"
+
+{-Función: huffmanArbol
+Descripción:Construye el árbol de Huffman rela ionado con una cadena de texto.
+Uso: huffmanArbol "banana" -> Node 6 (Node 3 (Leaf 'b' 1) (Leaf 'n' 2)) (Leaf 'a' 3)
+-}
+
+huffmanArbol :: String -> HuffmanTree
+huffmanArbol str = construyeArbol (creaListaHoja (frecuencias str))
