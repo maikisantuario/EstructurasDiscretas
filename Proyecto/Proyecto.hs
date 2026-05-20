@@ -41,3 +41,12 @@ Uso: huffmanArbol "banana" -> Node 6 (Node 3 (Leaf 'b' 1) (Leaf 'n' 2)) (Leaf 'a
 
 huffmanArbol :: String -> HuffmanTree
 huffmanArbol str = construyeArbol (creaListaHoja (frecuencias str))
+
+{-Función: ejemploAlgorit
+Descripción: Hace una prueba de las funciones anteriores acerca del proyecto (codificación y decodificación).
+Uso: 
+-}
+
+ejemploAlgorit :: IO ()
+ejemploAlgorit = do
+    let texto = "AVRAHKADABRA"
