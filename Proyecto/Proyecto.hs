@@ -50,3 +50,16 @@ Uso:
 ejemploAlgorit :: IO ()
 ejemploAlgorit = do
     let texto = "AVRAHKADABRA"
+
+    putStrLn $ "\nTexto original: " ++ texto
+    
+    putStrLn "\nFrecuencias descendentes:"
+    let frec = frecuencias texto
+    mapM_ (\(c,f) -> putStrLn $ "  '" ++ [c] ++ "' : " ++ show f) frec
+    
+    putStrLn "Árbol de Huffman:"
+    let arbol = huffmanArbol texto
+    print arbol
+    
+    putStrLn "\n=== Fin de la prueba==="
+
